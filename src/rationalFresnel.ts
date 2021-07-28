@@ -9,11 +9,13 @@ export function rationalFresnel(x: number): [number, number] {
     if (x === NaN) return [NaN, NaN];
     if (x > 1.3e8) return [0.5, 0.5];
     if (x < -1.3e8) return [-0.5, -0.5];
+    const sign = Math.sign(x);
+    x = Math.abs(x);
     const R = evaluateRationalPolynomial(c, d, x);
     const A = 0.5 * Math.PI * (evaluateRationalPolynomial(a, b, x) - x * x);
     const C = 0.5 - R * Math.sin(A);
     const S = 0.5 - R * Math.cos(A);
-    return [C, S];
+    return sign < 0 ? [-C, -S] : [C, S];
 }
 
 function evaluateRationalPolynomial(ns: number[], ds: number[], x: number) {

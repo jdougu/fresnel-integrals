@@ -30,6 +30,15 @@ test('Large number', () => {
     expect(contribution).toBeLessThan(1e-8);
 });
 
+test('Negative numbers', () => {
+    for (let x = 1; x < 100; x += 1) {
+        const [c, s] = rationalFresnel(x);
+        const [nc, ns] = rationalFresnel(-x);
+        expect(-c).toBe(nc);
+        expect(-s).toBe(ns);
+    }
+});
+
 function halfCycleWidth(k: number) {
     return Math.sqrt(2 * (k + 1)) - Math.sqrt(2 * k);
 }
