@@ -15,9 +15,8 @@
     "watch": "jest --watch"
   },
   "jest": {
+    "maxWorkers": "25%",
     "roots": ["src", "test"],
-    "testEnvironment": "node",
-    "testTimeout": 10000,
     "transform": {"^.+\\.(ts|tsx)$": "ts-jest"}
   }
 }
